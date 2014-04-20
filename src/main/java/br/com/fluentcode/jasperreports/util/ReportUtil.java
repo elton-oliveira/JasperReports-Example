@@ -27,6 +27,14 @@ public class ReportUtil {
 
 	private Map<String, Object> getParameters() {
 		HashMap<String, Object> parameters = new HashMap<String, Object>();
+		/*
+		 * A relative path cannot be used to locate the subreport file; in other
+		 * words, why, if you have a report in c:\myreport\main_report.jasper,
+		 * you cannot refer to the subreport just by using an expression like
+		 * ..\\mysubreports\\mysubreport.jasper. Well, you cannot do this
+		 * because JasperReports does not keep in memory the original location
+		 * of the Jasper file that it’s working with.
+		 */
 		parameters.put("SUBREPORT_DIR", "/jasper/");
 		return parameters;
 	}
