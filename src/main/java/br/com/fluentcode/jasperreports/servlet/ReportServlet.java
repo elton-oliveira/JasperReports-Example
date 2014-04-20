@@ -1,11 +1,7 @@
 package br.com.fluentcode.jasperreports.servlet;
 
 import java.io.IOException;
-import java.io.InputStream;
 import java.io.OutputStream;
-import java.net.URL;
-import java.util.HashMap;
-import java.util.Map;
 
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
@@ -14,12 +10,7 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 import net.sf.jasperreports.engine.JRException;
-import net.sf.jasperreports.engine.JasperExportManager;
-import net.sf.jasperreports.engine.JasperFillManager;
-import net.sf.jasperreports.engine.JasperPrint;
-import net.sf.jasperreports.engine.JasperReport;
-import net.sf.jasperreports.engine.data.JRXmlDataSource;
-import net.sf.jasperreports.engine.util.JRLoader;
+import br.com.fluentcode.jasperreports.util.ReportUtil;
 
 @WebServlet("/report")
 public class ReportServlet extends HttpServlet {
@@ -29,36 +20,23 @@ public class ReportServlet extends HttpServlet {
 			HttpServletResponse response) throws ServletException, IOException {
 
 		try {
-
-			final URL urlArquivoJasper = getClass().getClassLoader()
-					.getResource("/relatorios/report_companies.jasper");
-
-			final JasperReport jasperReport = (JasperReport) JRLoader
-					.loadObject(urlArquivoJasper);
-
-			final JasperPrint jasperPrint = JasperFillManager.fillReport(
-					jasperReport, getPameters(), new JRXmlDataSource(
-							getXmlDataSource()));
-
-			//Sends the report to the browser
-			OutputStream outStream = response.getOutputStream();
-			JasperExportManager.exportReportToPdfStream(jasperPrint, outStream);
+			
+			byte[] bytes = new ReportUtil().generateReport();
+			
+			//Tells the browser what type of response
+			response.setContentType("application/pdf");
+			//Option to save the file on disk 
+			response.setHeader("Content-disposition", "attachment; filename=\"business partners.pdf\"");
+			
+			OutputStream outputStream = response.getOutputStream();
+			outputStream.write(bytes);
+			outputStream.flush();
+			outputStream.close();
 			
 		} catch (JRException e) {
-			e.printStackTrace();
+			throw new ServletException(e);
 		}
 
-	}
-
-	private Map<String, Object> getPameters() {
-		HashMap<String, Object> parameters = new HashMap<String, Object>();
-		parameters.put("SUBREPORT_DIR", "/relatorios/");
-		return parameters;
-	}
-
-	private InputStream getXmlDataSource() {
-		return getClass().getClassLoader().getResourceAsStream(
-				"report_datasource.xml");
 	}
 
 }
