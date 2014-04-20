@@ -18,14 +18,14 @@ public class ReportUtil {
 		ByteArrayOutputStream outputStream = new ByteArrayOutputStream();
 
 		JasperRunManager.runReportToPdfStream(inputStream, outputStream,
-				getPameters(), new JRXmlDataSource(getXmlDataSource()));
+				getParameters(), new JRXmlDataSource(getXmlDataSource()));
 
 		byte[] bytes = outputStream.toByteArray();
 
 		return bytes;
 	}
 
-	private Map<String, Object> getPameters() {
+	private Map<String, Object> getParameters() {
 		HashMap<String, Object> parameters = new HashMap<String, Object>();
 		parameters.put("SUBREPORT_DIR", "/relatorios/");
 		return parameters;
