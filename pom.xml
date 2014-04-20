@@ -56,10 +56,8 @@
 				<artifactId>jasperreports-maven-plugin</artifactId>
 				<version>1.0-beta-2</version>
 				<configuration>
-					<sourceDirectory>src/main/resources/relatorios</sourceDirectory>
-					<!-- TODO Precisa mudar o outputDirectory para ${project.build.directory}/classes/relatorios 
-					Esta compilando os jasper junto com os fontes somente por questões de problemas de deploy pelo eclipse-->
-					<outputDirectory>src/main/resources/relatorios</outputDirectory>
+					<sourceDirectory>src/main/jasper</sourceDirectory>
+					<outputDirectory>${project.build.directory}/classes/jasper</outputDirectory>
 				</configuration>
 				<executions>
 					<execution>

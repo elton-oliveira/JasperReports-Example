@@ -13,7 +13,7 @@ public class ReportUtil {
 	
 	public byte[] generateReport() throws JRException {
 		InputStream inputStream = getClass().getClassLoader()
-				.getResourceAsStream("/relatorios/report_companies.jasper");
+				.getResourceAsStream("/jasper/report_companies.jasper");
 
 		ByteArrayOutputStream outputStream = new ByteArrayOutputStream();
 
@@ -27,7 +27,7 @@ public class ReportUtil {
 
 	private Map<String, Object> getParameters() {
 		HashMap<String, Object> parameters = new HashMap<String, Object>();
-		parameters.put("SUBREPORT_DIR", "/relatorios/");
+		parameters.put("SUBREPORT_DIR", "/jasper/");
 		return parameters;
 	}
 
