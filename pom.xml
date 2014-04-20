@@ -3,11 +3,11 @@
 	<modelVersion>4.0.0</modelVersion>
 
 	<groupId>br.com.fluentcode</groupId>
-	<artifactId>JasperReportsWeb-Example</artifactId>
+	<artifactId>JasperReports-Example</artifactId>
 	<version>0.0.1-SNAPSHOT</version>
 	<packaging>war</packaging>
 
-	<name>JasperReportsWeb-Example Maven Webapp</name>
+	<name>JasperReports-Example Maven Webapp</name>
 	<url>http://maven.apache.org</url>
 
 	<properties>
@@ -40,7 +40,7 @@
 	</dependencies>
 
 	<build>
-		<finalName>JasperReportsWeb-Example</finalName>
+		<finalName>JasperReports-Example</finalName>
 		<plugins>
 			<plugin>
 				<groupId>org.apache.maven.plugins</groupId>
