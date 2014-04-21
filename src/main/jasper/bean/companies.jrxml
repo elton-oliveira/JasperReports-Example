@@ -6,14 +6,15 @@
 	<parameter name="SUBREPORT_DIR" class="java.lang.String" isForPrompting="false">
 		<defaultValueExpression><![CDATA[""]]></defaultValueExpression>
 	</parameter>
-	<parameter name="EMPRESAS" class="java.util.Collection"/>
 	<queryString>
 		<![CDATA[]]>
 	</queryString>
+	<field name="nome" class="java.lang.String"/>
+	<field name="contatos" class="java.util.Collection"/>
 	<group name="company">
 		<groupExpression><![CDATA[$V{PAGE_NUMBER}]]></groupExpression>
 		<groupHeader>
-			<band height="34">
+			<band height="14">
 				<staticText>
 					<reportElement uuid="b4f3485c-be3b-4c8a-893e-c181ed8df254" mode="Opaque" x="0" y="0" width="555" height="14" backcolor="#E3E3E3"/>
 					<textElement textAlignment="Center">
@@ -21,15 +22,30 @@
 					</textElement>
 					<text><![CDATA[Business Partners]]></text>
 				</staticText>
-				<subreport>
-					<reportElement uuid="c4ca5a61-b092-4246-a712-c8ee1d1551b9" x="0" y="14" width="555" height="20"/>
-					<subreportParameter name="SUBREPORT_DIR">
-						<subreportParameterExpression><![CDATA[$P{SUBREPORT_DIR}]]></subreportParameterExpression>
-					</subreportParameter>
-					<dataSourceExpression><![CDATA[new net.sf.jasperreports.engine.data.JRBeanCollectionDataSource($P{EMPRESAS})]]></dataSourceExpression>
-					<subreportExpression><![CDATA[$P{SUBREPORT_DIR} + "company.jasper"]]></subreportExpression>
-				</subreport>
 			</band>
 		</groupHeader>
 	</group>
+	<detail>
+		<band height="34">
+			<subreport>
+				<reportElement uuid="c4ca5a61-b092-4246-a712-c8ee1d1551b9" x="0" y="14" width="555" height="20"/>
+				<subreportParameter name="SUBREPORT_DIR">
+					<subreportParameterExpression><![CDATA[$P{SUBREPORT_DIR}]]></subreportParameterExpression>
+				</subreportParameter>
+				<dataSourceExpression><![CDATA[new net.sf.jasperreports.engine.data.JRBeanCollectionDataSource($F{contatos})]]></dataSourceExpression>
+				<subreportExpression><![CDATA[$P{SUBREPORT_DIR} + "contacts.jasper"]]></subreportExpression>
+			</subreport>
+			<line>
+				<reportElement uuid="7ea79e4b-5489-4479-ad7f-b051abaf224d" x="0" y="0" width="555" height="1"/>
+			</line>
+			<textField>
+				<reportElement uuid="1d73faa1-da61-4f38-8405-f73ee97ef779" x="0" y="0" width="555" height="14"/>
+				<textElement/>
+				<textFieldExpression><![CDATA[$F{nome}]]></textFieldExpression>
+			</textField>
+			<line>
+				<reportElement uuid="daed9564-a994-4736-894d-516ec115c92c" x="0" y="14" width="555" height="1"/>
+			</line>
+		</band>
+	</detail>
 </jasperReport>
