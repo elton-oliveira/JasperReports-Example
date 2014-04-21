@@ -29,9 +29,6 @@
 		<band height="34">
 			<subreport>
 				<reportElement uuid="c4ca5a61-b092-4246-a712-c8ee1d1551b9" x="0" y="14" width="555" height="20"/>
-				<subreportParameter name="SUBREPORT_DIR">
-					<subreportParameterExpression><![CDATA[$P{SUBREPORT_DIR}]]></subreportParameterExpression>
-				</subreportParameter>
 				<dataSourceExpression><![CDATA[new net.sf.jasperreports.engine.data.JRBeanCollectionDataSource($F{contatos})]]></dataSourceExpression>
 				<subreportExpression><![CDATA[$P{SUBREPORT_DIR} + "contacts.jasper"]]></subreportExpression>
 			</subreport>
