@@ -41,11 +41,22 @@
 				<textElement/>
 				<textFieldExpression><![CDATA[new java.util.Date()]]></textFieldExpression>
 			</textField>
-			<line>
-				<reportElement uuid="4a91d3d6-ae2f-4188-bb1c-83c7683f9f05" x="0" y="19" width="555" height="1"/>
-			</line>
 		</band>
 	</title>
+	<pageHeader>
+		<band height="12">
+			<staticText>
+				<reportElement uuid="9924786f-17a2-4746-a96e-d85e0d625270" x="229" y="0" width="111" height="11"/>
+				<textElement textAlignment="Center">
+					<font size="8"/>
+				</textElement>
+				<text><![CDATA[Bean Collection Data Source]]></text>
+			</staticText>
+			<line>
+				<reportElement uuid="4a91d3d6-ae2f-4188-bb1c-83c7683f9f05" x="0" y="11" width="555" height="1"/>
+			</line>
+		</band>
+	</pageHeader>
 	<pageFooter>
 		<band height="13" splitType="Stretch">
 			<staticText>

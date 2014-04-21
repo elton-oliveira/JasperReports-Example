@@ -24,7 +24,7 @@ public class ReportServlet extends HttpServlet {
 			
 			byte[] bytes = null;
 			
-			if(Boolean.valueOf(request.getParameter("fromXml"))){
+			if("XML".equals(request.getParameter("reportDataSource"))){
 				 bytes = new ReportXmlService().generateReport();
 			}else{
 				 bytes = new ReportBeanService().generateReport();
