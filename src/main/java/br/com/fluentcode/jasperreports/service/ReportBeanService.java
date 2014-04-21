@@ -45,8 +45,9 @@ public class ReportBeanService {
 		 * of loosing the first row in the subreport, because the subreport will
 		 * move the record pointer in the data source.
 		 * 
-		 * So the master report should send to the report 
-		 * new net.sf.jasperreports.engine.data.JRBeanCollectionDataSource($P{EMPRESAS}) 
+		 * A data source is a consumable object that is usable for feeding a
+		 * report only once. So the master report should send to the report 
+		 * new net.sf.jasperreports.engine.data.JRBeanCollectionDataSource($P{EMPRESAS})
 		 * and not $P{REPORT_DATA_SOURCE}
 		 */
 		parameters.put("EMPRESAS", getEmpresas());
