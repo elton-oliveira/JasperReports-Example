@@ -1,4 +1,4 @@
-package br.com.fluentcode.jasperreports.util;
+package br.com.fluentcode.jasperreports.service;
 
 import java.io.ByteArrayOutputStream;
 import java.io.InputStream;
@@ -9,11 +9,11 @@ import net.sf.jasperreports.engine.JRException;
 import net.sf.jasperreports.engine.JasperRunManager;
 import net.sf.jasperreports.engine.data.JRXmlDataSource;
 
-public class ReportUtil {
+public class ReportXmlService {
 	
 	public byte[] generateReport() throws JRException {
 		InputStream inputStream = getClass().getClassLoader()
-				.getResourceAsStream("/jasper/report_companies.jasper");
+				.getResourceAsStream("/jasper/xml/report_companies.jasper");
 
 		ByteArrayOutputStream outputStream = new ByteArrayOutputStream();
 
@@ -35,7 +35,7 @@ public class ReportUtil {
 		 * because JasperReports does not keep in memory the original location
 		 * of the Jasper file that it’s working with.
 		 */
-		parameters.put("SUBREPORT_DIR", "/jasper/");
+		parameters.put("SUBREPORT_DIR", "/jasper/xml/");
 		return parameters;
 	}
 
