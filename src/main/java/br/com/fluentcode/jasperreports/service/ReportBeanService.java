@@ -40,6 +40,15 @@ public class ReportBeanService {
 		 * of the Jasper file that it’s working with.
 		 */
 		parameters.put("SUBREPORT_DIR", "/jasper/bean/");
+		/*
+		 * Using the same master report datasource in subreport cause the effect
+		 * of loosing the first row in the subreport, because the subreport will
+		 * move the record pointer in the data source.
+		 * 
+		 * So the master report should send to the report 
+		 * new net.sf.jasperreports.engine.data.JRBeanCollectionDataSource($P{EMPRESAS}) 
+		 * and not $P{REPORT_DATA_SOURCE}
+		 */
 		parameters.put("EMPRESAS", getEmpresas());
 		return parameters;
 	}
